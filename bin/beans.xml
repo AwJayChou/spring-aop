@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:c="http://www.springframework.org/schema/c"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+  <bean id="Log" class="cn.ctx.log.Log"></bean>
+  <bean id="diylog" class="cn.ctx.log.DiyLog"></bean>
+  <bean id="userService" class="cn.ctx.service.impl.UserServiceImpl"></bean>
+  <bean id="afterTest" class="cn.ctx.log.AfterMethod"></bean>
+  <bean id="autoTest" class="cn.ctx.log.AnnotationLog"></bean>
+  <aop:config>
+  <!-- 使用实现类实现 -->
+  <!-- 
+  	<aop:pointcut expression="execution(* cn.ctx.service.impl.*.*(..))" id="pointcut1"/>
+  	<aop:advisor advice-ref="Log" pointcut-ref="pointcut1"/>
+  	<aop:advisor advice-ref="afterTest" pointcut-ref="pointcut1"/>
+   -->
+   <!-- 自定义类实现 -->
+   <!-- 
+   	  <aop:aspect ref="diylog">
+  	<aop:pointcut expression="execution(* cn.ctx.service.impl.*.*(..))" id="diyclass"/>
+  	<aop:before method="before" pointcut-ref="diyclass"/>
+  	<aop:after method="after" pointcut-ref="diyclass"/>
+    </aop:aspect>
+    -->
+	
+  </aop:config>
+  <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>
